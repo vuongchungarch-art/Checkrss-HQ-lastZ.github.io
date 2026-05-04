@@ -1,2 +1,2 @@
-# Checkrss-HQ-lastZ.github.io
+# Checkrss-HQ-lastZ
 Check RSS
