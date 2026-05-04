@@ -1,0 +1,510 @@
+
+<!-- saved from url=(0080)file:///C:/Users/VUONGARCHI/Desktop/checking_hq_safety_scouting_chuan%20(2).html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0f}
+.app{background:#0a0a0f;min-height:100vh;padding:12px;font-family:var(--font-sans)}
+.title{text-align:center;padding:14px 8px 10px;margin-bottom:14px;border-bottom:1px solid #2a2a3a}
+.title h1{font-size:25px;font-weight:700;color:#fd9b1b;letter-spacing:0.3px;line-height:1.4}
+.title p{font-size:15px;font-family:Arial,Helvetica,sans-serif;color:#7a7a9a;margin-top:4px}
+.title k{font-size:9px;font-family:Arial,Helvetica,sans-serif;color:#a83001;margin-top:5px}
+.section{background:#12121e;border:0.5px solid #2a2a40;border-radius:10px;padding:12px;margin-bottom:12px}
+.sec-title{font-size:14px;font-weight:500;color:#a78bfa;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #2a2a40}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{background:#1a1a2e;color:#e69602;font-weight:700;padding:6px 4px;text-align:center;font-size:14px;text-transform:uppercase;border:0.5px solid #2a2a40}
+.tbl td{padding:5px 4px;text-align:center;border:0.5px solid #2a2a40;color:#ffffff}
+.tbl .row-label{text-align:left;color:#c76e09;font-size:14px;padding-left:6px}
+.inp{background:#0d0d1a;border:0.5px solid #3a3a5c;border-radius:4px;color:#e8d5ff;font-size:14px;padding:3px 4px;width:100%;text-align:center;outline:none}
+.inp:focus{border-color:#7c5cbf}
+.total-row td{background:#1e1e32;color:#ffd700;font-weight:500;font-size:16px}
+.total-label{color:#ffd700!important;font-weight:500}
+.mid-calc{background:#1a1a2e;border:0.5px solid #3a3a50;border-radius:8px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.mid-calc .label{font-size:20px;color:#9090b8}
+.mid-calc .value{font-size:30px;font-weight:800;color:#f0b429}
+.res-tbl th{font-size:14px;padding:5px 3px}
+.safe{color:#4ade80;text-transform:uppercase}
+.unsafe{color:#f87171;text-transform:uppercase}
+.indicated-header{background:#1a2a1a;color:#86efac!important}
+.scout-sec .sec-title{color:#f88538}
+
+/* ===== HISTORY SECTION ===== */
+.history-section{background:#0e0e1c;border:1px solid #3a2a5a;border-radius:10px;padding:12px;margin-bottom:12px}
+.history-section .sec-title{color:#c084fc;border-bottom-color:#3a2a5a}
+.history-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.hist-input{background:#0d0d1a;border:0.5px solid #4a3a6c;border-radius:5px;color:#e8d5ff;font-size:13px;padding:5px 8px;outline:none;flex:1;min-width:120px}
+.hist-input:focus{border-color:#a78bfa}
+.hist-btn{border:none;border-radius:5px;font-size:12px;font-weight:600;padding:5px 12px;cursor:pointer;letter-spacing:0.4px;transition:opacity 0.15s}
+.hist-btn:hover{opacity:0.8}
+.btn-save{background:#5b3fa0;color:#e8d5ff}
+.btn-load{background:#1a4a2a;color:#86efac}
+.btn-delete{background:#4a1a1a;color:#f87171}
+.btn-clear-all{background:#2a1a1a;color:#f87171;border:0.5px solid #4a2a2a}
+.btn-export{background:#0d2a3a;color:#38bdf8;border:0.5px solid #1a4a6a}
+.btn-import{background:#0d2a1a;color:#4ade80;border:0.5px solid #1a4a2a}
+.history-toolbar-row2{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.drop-zone{border:1px dashed #3a3a5c;border-radius:6px;padding:8px 12px;text-align:center;color:#5a5a7a;font-size:11px;cursor:pointer;transition:border-color 0.2s,color 0.2s;margin-bottom:6px}
+.drop-zone:hover,.drop-zone.dragover{border-color:#a78bfa;color:#c084fc}
+.history-list{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;padding-right:2px}
+.history-list::-webkit-scrollbar{width:4px}
+.history-list::-webkit-scrollbar-track{background:#1a1a2e}
+.history-list::-webkit-scrollbar-thumb{background:#4a3a6c;border-radius:2px}
+.hist-item{background:#14142a;border:0.5px solid #3a3a5c;border-radius:7px;padding:7px 10px;display:flex;align-items:center;gap:8px;transition:border-color 0.15s}
+.hist-item:hover{border-color:#7c5cbf}
+.hist-item-info{flex:1;min-width:0}
+.hist-item-name{color:#c084fc;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-item-meta{color:#5a5a7a;font-size:11px;margin-top:2px}
+.hist-item-actions{display:flex;gap:5px;flex-shrink:0}
+.hist-empty{color:#4a4a6a;font-size:12px;text-align:center;padding:12px 0;font-style:italic}
+.toast{position:fixed;bottom:20px;right:20px;background:#1e1e32;border:0.5px solid #5b3fa0;border-radius:8px;padding:8px 14px;color:#c084fc;font-size:13px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.toast.show{opacity:1}
+</style>
+</head><body><div class="app">
+<div class="title">
+  <h1>Checking HQ's Safety</h1>
+  <p>Kiem Tra Tai nguyen Tru So</p>
+  <k>- Created by MKC Philip -</k>
+</div>
+
+<!-- HISTORY SECTION -->
+<div class="history-section">
+  <div class="sec-title">📂 Lịch Sử — Saved Profiles</div>
+  <div class="history-toolbar">
+    <input class="hist-input" type="text" id="save-name" placeholder=" Profile name (vd: Philip 12/06)..." maxlength="40">
+    <button class="hist-btn btn-save" onclick="saveProfile()">💾 Save</button>
+  </div>
+  <div class="history-toolbar-row2">
+    <button class="hist-btn btn-export" onclick="exportJSON()">⬇ Export JSON</button>
+    <button class="hist-btn btn-import" onclick="document.getElementById(&#39;import-file&#39;).click()">⬆ Import JSON</button>
+    <button class="hist-btn btn-clear-all" onclick="clearAllHistory()">🗑 Xóa tất cả</button>
+    <input type="file" id="import-file" accept=".json" style="display:none" onchange="importJSON(this)">
+  </div>
+  <div class="drop-zone" id="drop-zone" onclick="document.getElementById(&#39;import-file&#39;).click()">
+    Drafting/ Ipmort Json file here - Kéo thả file <b>.json</b> vào đây để import — hoặc nhấn để chọn file
+  </div>
+  <div class="history-list" id="history-list">
+    <div class="hist-item">
+      <div class="hist-item-info">
+        <div class="hist-item-name">📋 Philip 0405</div>
+        <div class="hist-item-meta">23:12 04/05/2026</div>
+      </div>
+      <div class="hist-item-actions">
+        <button class="hist-btn btn-load" onclick="loadProfile(0)">📂 Open Json</button>
+        <button class="hist-btn btn-delete" onclick="deleteProfile(0)">✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: WAREHOUSE -->
+<div class="section">
+  <div class="sec-title">1. Warehouse -- KHO TÀI NGUYÊN</div>
+  <table class="tbl" id="wh-tbl">
+    <thead>
+      <tr>
+        <th style="width:15%"></th>
+        <th>Warehouse 1</th>
+        <th>Warehouse 2</th>
+        <th>Warehouse 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Level</td>
+        <td><input class="inp" type="number" id="wl1" value="" min="1" max="30" oninput="updateWH()"></td>
+        <td><input class="inp" type="number" id="wl2" value="" min="1" max="30" oninput="updateWH()"></td>
+        <td><input class="inp" type="number" id="wl3" value="" min="1" max="30" oninput="updateWH()"></td>
+      </tr>
+      <tr>
+        <td class="row-label">Resource Protection</td>
+        <td><input class="inp" type="number" id="wp1" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="wp2" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="wp3" value="" oninput="calcAll()"></td>
+      </tr>
+      <tr>
+        <td class="row-label">Dispatch - Refugee</td>
+        <td><input class="inp" type="number" id="wd1" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="wd2" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="wd3" value="" oninput="calcAll()"></td>
+      </tr>
+      <tr class="total-row">
+        <td class="row-label total-label">Total 1</td>
+        <td colspan="3" id="total1">108,218,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 2: NEW HOME -->
+<div class="section">
+  <div class="sec-title">2. New Home -- NƠI Ở MỚI</div>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:15%"></th>
+        <th style="font-weight:700">STOCK MANAGEMENT I</th>
+        <th style="font-weight:700">STOCK MANAGEMENT II</th>
+        <th style="font-weight:700">STOCK MANAGEMENT III</th>
+        <th style="font-weight:700">STOCK MANAGEMENT IV</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label" style="font-size:14px">Resource Protection</td>
+        <td><input class="inp" type="number" id="nh1" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="nh2" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="nh3" value="" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="nh4" value="" oninput="calcAll()"></td>
+      </tr>
+      <tr class="total-row">
+        <td class="row-label total-label">Total 2</td>
+        <td colspan="4" id="total2">10,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3+4: TECHNOLOGIES + ALLIANCE -->
+<div class="section">
+  <div class="sec-title">3. Technologies -- Nghiên Cứu Công Nghệ</div>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:15%"></th>
+        <th>Shelter Building<br><span style="font-size:10px;color:#7a7aaa">(Anti Theft)</span></th>
+        <th>HQ MANAGEMENT<br><span style="font-size:10px;color:#7a7aaa">(Anti Theft 1)</span></th>
+        <th>HQ MANAGEMENT<br><span style="font-size:10px;color:#7a7aaa">(Anti Theft 2)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Factor (Hệ số)</td>
+        <td><input class="inp" type="number" id="te1" value="" step="0.01" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="te2" value="" step="0.01" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="te3" value="" step="0.01" oninput="calcAll()"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="height:10px"></div>
+  <div class="sec-title" style="color:#38bdf8">4. Alliance Techs — Công Nghệ Liên Minh</div>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:15%"></th>
+        <th>Reinforce Structure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Factor (Hệ số)</td>
+        <td><input class="inp" type="number" id="at1" value="" step="0.01" oninput="calcAll()"></td>
+      </tr>
+      <tr class="total-row">
+        <td class="row-label total-label">Total 3</td>
+        <td id="total3">1.4500</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TOTAL HQ SAFETY -->
+<div class="mid-calc">
+  <div>
+    <div class="label">Total HQ's Safety Data</div>
+    <div style="font-size:10px;color:#5a5a7a;margin-top:2px">((Total1 + Total2) × Total3) / 1,000,000</div>
+  </div>
+  <div>
+    <span class="value" id="hq-safety">156.9306</span>
+    <span style="font-size:14px;color:#7a7a9a;margin-left:2px">M</span>
+  </div>
+</div>
+
+<!-- SECTION 5A: INDICATED OUTSIDE RESOURCES -->
+<div class="section">
+  <div class="sec-title" style="color:#4ade80">5. Displayed Resources — Hiển Thị Tài Nguyên</div>
+  <div style="font-size:10px;color:#7a7a9a;margin-bottom:8px">Indicated Outside Resources (đơn vị: M)</div>
+  <table class="tbl res-tbl">
+    <thead>
+      <tr>
+        <th class="indicated-header" style="font-weight:500;color:#86efac!important">Electric</th>
+        <th class="indicated-header" style="font-weight:500;color:#86efac!important">Food</th>
+        <th class="indicated-header" style="font-weight:500;color:#86efac!important">Wood</th>
+        <th class="indicated-header" style="font-weight:500;color:#86efac!important">Coin Z</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input class="inp" type="number" id="ir1" value="" step="0.1" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="ir2" value="" step="0.1" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="ir3" value="" step="0.1" oninput="calcAll()"></td>
+        <td><input class="inp" type="number" id="ir4" value="" step="0.1" oninput="calcAll()"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 5B: SCOUTING RESULT -->
+<div class="section scout-sec">
+  <div class="sec-title">Indicated Scouting Result — Bảng Trinh Sát</div>
+  <table class="tbl res-tbl" style="border:1px solid #2a3a5a">
+    <thead>
+      <tr>
+        <th style="background:#0d1a2e;color:#60a5fa;font-weight:500">Electric</th>
+        <th style="background:#0d1a2e;color:#60a5fa;font-weight:500">Food</th>
+        <th style="background:#0d1a2e;color:#60a5fa;font-weight:500">Wood</th>
+        <th style="background:#0d1a2e;color:#60a5fa;font-weight:500">Coin Z</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="sr1" style="color: rgb(248, 113, 113);">352.0694 M</td>
+        <td id="sr2" style="color: rgb(248, 113, 113);">146.1694 M</td>
+        <td id="sr3" style="color: rgb(248, 113, 113);">142.7694 M</td>
+        <td id="sr4" style="color: rgb(74, 222, 128);">-46.1306 M</td>
+      </tr>
+      <tr>
+        <td id="st1"><span class="unsafe">Unsafe</span></td>
+        <td id="st2"><span class="unsafe">Unsafe</span></td>
+        <td id="st3"><span class="unsafe">Unsafe</span></td>
+        <td id="st4"><span class="safe">Safe</span></td>
+      </tr>
+      <tr>
+        <td id="sd1"><span class="unsafe">352.0694</span></td>
+        <td id="sd2"><span class="unsafe">146.1694</span></td>
+        <td id="sd3"><span class="unsafe">142.7694</span></td>
+        <td id="sd4"><span class="safe">0</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="display:flex;gap:25px;margin-top:8px;font-size:14px;font-family:&#39;Segoe UI&#39;,Tahoma,Geneva,Verdana,sans-serif;">
+    <span>Hàng 1: Chênh lệch (M)</span>
+    <span class="safe">● Safe = An toàn</span>
+    <span class="unsafe">● Unsafe (Must be Shielded) = Không An toàn (Bật Lá Chắn)</span>
+  </div>
+</div>
+
+</div>
+
+<div class="toast" id="toast">📂 Opened - Đã tải: Philip 0405</div>
+
+<script>
+const WH_MAP = {1:900,2:2700,3:4500,4:7200,5:13500,6:27000,7:45000,8:90000,9:135000,10:180000,11:270000,12:450000,13:720000,14:1080000,15:1440000,16:1800000,17:2700000,18:4500000,19:6750000,20:9900000,21:13500000,22:18000000,23:22500000,24:29700000,25:36000000,26:42300000,27:48600000,28:54900000,29:61200000,30:67500000};
+
+const FIELD_IDS = ['wl1','wl2','wl3','wp1','wp2','wp3','wd1','wd2','wd3','nh1','nh2','nh3','nh4','te1','te2','te3','at1','ir1','ir2','ir3','ir4'];
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+function getValues(){
+  const obj={};
+  FIELD_IDS.forEach(id=>{obj[id]=document.getElementById(id).value;});
+  return obj;
+}
+
+function setValues(obj){
+  FIELD_IDS.forEach(id=>{
+    if(obj[id]!==undefined) document.getElementById(id).value=obj[id];
+  });
+}
+
+// ===== HISTORY =====
+const STORAGE_KEY='hq_safety_history';
+
+function loadHistory(){
+  try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}
+  catch{return [];}
+}
+
+function saveHistory(arr){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(arr));
+}
+
+function renderHistory(){
+  const arr=loadHistory();
+  const el=document.getElementById('history-list');
+  if(arr.length===0){
+    el.innerHTML='<div class="hist-empty">Chưa có lịch sử. Nhập tên và nhấn Lưu để lưu lần đầu.</div>';
+    return;
+  }
+  el.innerHTML=arr.map((item,i)=>`
+    <div class="hist-item">
+      <div class="hist-item-info">
+        <div class="hist-item-name">📋 ${escHtml(item.name)}</div>
+        <div class="hist-item-meta">${item.date}</div>
+      </div>
+      <div class="hist-item-actions">
+        <button class="hist-btn btn-load" onclick="loadProfile(${i})">📂 Open Json</button>
+        <button class="hist-btn btn-delete" onclick="deleteProfile(${i})">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function escHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function saveProfile(){
+  const name=document.getElementById('save-name').value.trim();
+  if(!name){showToast('⚠ Put name - Nhập tên profile trước!');return;}
+  const arr=loadHistory();
+  const now=new Date();
+  const date=now.toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  // Check duplicate name → overwrite
+  const existing=arr.findIndex(x=>x.name===name);
+  const entry={name,date,values:getValues()};
+  if(existing>=0){
+    arr[existing]=entry;
+    showToast('✅ Updated - Đã cập nhật: '+name);
+  } else {
+    arr.unshift(entry);
+    showToast('💾 Saved - Đã lưu: '+name);
+  }
+  saveHistory(arr);
+  renderHistory();
+  document.getElementById('save-name').value='';
+}
+
+function loadProfile(i){
+  const arr=loadHistory();
+  if(!arr[i])return;
+  setValues(arr[i].values);
+  // Re-sync WH protection from level if level set
+  updateWH();
+  showToast('📂 Opened - Đã tải: '+arr[i].name);
+}
+
+function deleteProfile(i){
+  const arr=loadHistory();
+  const name=arr[i]?arr[i].name:'';
+  arr.splice(i,1);
+  saveHistory(arr);
+  renderHistory();
+  showToast('🗑 Deleted - Đã xóa: '+name);
+}
+
+function clearAllHistory(){
+  if(!confirm('Clean History - Xóa toàn bộ lịch sử?'))return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderHistory();
+  showToast('🗑 Deleted All - Đã xóa tất cả');
+}
+
+// ===== CALC =====
+function updateWH(){
+  [1,2,3].forEach(i=>{
+    const lv=parseInt(document.getElementById('wl'+i).value);
+    if(lv && WH_MAP[lv]){
+      document.getElementById('wp'+i).value=WH_MAP[lv];
+    }
+  });
+  calcAll();
+}
+
+function g(id){return parseFloat(document.getElementById(id).value)||0;}
+
+function fmt(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+
+function calcAll(){
+  const wp1=g('wp1'),wp2=g('wp2'),wp3=g('wp3');
+  const wd1=g('wd1'),wd2=g('wd2'),wd3=g('wd3');
+  const t1=(wp1+wd1)+(wp2+wd2)+(wp3+wd3);
+  document.getElementById('total1').textContent=fmt(t1);
+
+  const nh1=g('nh1'),nh2=g('nh2'),nh3=g('nh3'),nh4=g('nh4');
+  const t2=nh1+nh2+nh3+nh4;
+  document.getElementById('total2').textContent=fmt(t2);
+
+  const te1=g('te1'),te2=g('te2'),te3=g('te3'),at1=g('at1');
+  const t3=1+te1+te2+te3+at1;
+  document.getElementById('total3').textContent=t3.toFixed(4);
+
+  const hqSafety=((t1+t2)*t3)/1000000;
+  document.getElementById('hq-safety').textContent=hqSafety.toFixed(4);
+
+  const ir=[g('ir1'),g('ir2'),g('ir3'),g('ir4')];
+  ir.forEach((v,i)=>{
+    const diff=v-hqSafety;
+    const isSafe=diff<0;
+    const srEl=document.getElementById('sr'+(i+1));
+    const stEl=document.getElementById('st'+(i+1));
+    const sdEl=document.getElementById('sd'+(i+1));
+    srEl.textContent=diff.toFixed(4)+' M';
+    srEl.style.color=isSafe?'#4ade80':'#f87171';
+    stEl.innerHTML=isSafe?'<span class="safe">Safe</span>':'<span class="unsafe">Unsafe</span>';
+    sdEl.innerHTML=isSafe?'<span class="safe">0</span>':'<span class="unsafe">'+diff.toFixed(4)+'</span>';
+  });
+}
+
+// ===== EXPORT / IMPORT JSON =====
+function exportJSON(){
+  const arr=loadHistory();
+  if(arr.length===0){showToast('Không có profile nào để export!');return;}
+  const blob=new Blob([JSON.stringify(arr,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const now=new Date();
+  const stamp=now.toISOString().slice(0,10);
+  a.href=url;a.download='hq_safety_profiles_'+stamp+'.json';
+  a.click();URL.revokeObjectURL(url);
+  showToast('Export xong! '+arr.length+' profiles.');
+}
+
+function importJSON(input){
+  const file=input.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const imported=JSON.parse(e.target.result);
+      if(!Array.isArray(imported))throw new Error('Không phải mảng');
+      // Validate basic shape
+      const valid=imported.filter(x=>x&&typeof x.name==='string'&&x.values);
+      if(valid.length===0){showToast('File không hợp lệ hoặc rỗng!');return;}
+      const existing=loadHistory();
+      // Merge: imported profiles ghi đè nếu trùng tên, append nếu mới
+      let added=0,updated=0;
+      valid.forEach(item=>{
+        const idx=existing.findIndex(x=>x.name===item.name);
+        if(idx>=0){existing[idx]=item;updated++;}
+        else{existing.unshift(item);added++;}
+      });
+      saveHistory(existing);
+      renderHistory();
+      showToast('Import: +'+added+' mới, '+updated+' cập nhật');
+    }catch(err){
+      showToast('Lỗi đọc file JSON!');
+    }
+    input.value='';
+  };
+  reader.readAsText(file);
+}
+
+// Drag & drop
+(function(){
+  const dz=document.getElementById('drop-zone');
+  dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('dragover');});
+  dz.addEventListener('dragleave',function(){dz.classList.remove('dragover');});
+  dz.addEventListener('drop',function(e){
+    e.preventDefault();dz.classList.remove('dragover');
+    const file=e.dataTransfer.files[0];
+    if(!file||!file.name.endsWith('.json')){showToast('Chỉ nhận file .json!');return;}
+    const fakeInput={files:[file]};
+    importJSON(fakeInput);
+  });
+})();
+
+// Init
+renderHistory();
+calcAll();
+
+// Allow Enter key to save
+document.getElementById('save-name').addEventListener('keydown',function(e){
+  if(e.key==='Enter') saveProfile();
+});
+</script>
+
+</body></html>
